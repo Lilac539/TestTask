@@ -1,19 +1,17 @@
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.ArrayList;
 
 
 public class BoysDemiSeasonShoesPage extends MainPage {
 
-    String name;
-    MainPage mainPage = new MainPage();
-    ArrayList<String> elName = new ArrayList<String>();
-
-
     public ArrayList<String> checkNameToSneakers(){
 
-        ElementsCollection allEl = mainPage.getAllEl();
+        String name;
+        MainPage mainPage = new MainPage();
+        ArrayList<String> elName = new ArrayList<String>();
+
+        ElementsCollection allEl = mainPage.getAllElOnPage();
         for(SelenideElement el:allEl){
             name = el.$x(".//p[@class = 'item__name']").getText().toLowerCase();
             if (!name.contains("кроссовки")){

@@ -1,12 +1,10 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.Test;
 import java.util.ArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static com.codeborne.selenide.Selenide.open;
-public class BoysDemiSeasonShoes {
+
+public class BoysDemiSeasonShoes extends Settings {
 
     @Test
     public void ckeckProductName(){
@@ -25,7 +23,7 @@ public class BoysDemiSeasonShoes {
             listNameNotSneakers.addAll(boyShoes.checkNameToSneakers());
             pageNumber++;
         }
-        assertThat("Товари без слова Кросівки: " + listNameNotSneakers.toString(), listNameNotSneakers.isEmpty());
+        assertThat("Товари без слова Кроссовки: " + listNameNotSneakers.toString(), listNameNotSneakers.isEmpty());
 
 
     }

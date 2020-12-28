@@ -2,7 +2,7 @@ import com.codeborne.selenide.*;
 import org.junit.Test;
 import static com.codeborne.selenide.Selenide.*;
 
-public class GirlsShoes {
+public class GirlsShoes extends Settings{
 
     @Test
     public void checkPrice(){

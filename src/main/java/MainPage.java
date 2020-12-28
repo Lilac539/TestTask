@@ -1,23 +1,39 @@
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.ArrayList;
 import java.util.Collections;
 import static com.codeborne.selenide.Selenide.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+
+
 
 public class MainPage {
 
     private ElementsCollection allEl = $$x("//div[@class = 'items-list clearfix']/div");
-    private SelenideElement MainitemsName = $x("//h1[@class = 'item-details__title']");
+    private ElementsCollection allFilters = $$x("//ul[@class = 'filter__cheboxes-list']/li");
+    private SelenideElement itemsName = $x("//h1[@class = 'item-details__title']");
     private SelenideElement filterForGirl = $x("//p[contains(., 'ДЛЯ ДЕВОЧКИ')]/..");
     private SelenideElement filterForBoy = $x("//p[contains(., 'ДЛЯ МАЛЬЧИКА')]/..");
     private SelenideElement showFilter = $x("//button[contains(., 'Показать')]");
     private SelenideElement reserFilterbtn = $x("//div[@class = 'filter__buttons']//a[contains(., 'Сбросить фильтр')]");
 
-    public ElementsCollection getAllEl(){
+    public ElementsCollection getAllElOnPage(){
         assertThat("Колекція пуста", !allEl.isEmpty());
+        return allEl;
+    }
+
+    public ArrayList<String> getAllElOrderNumber(){
+        ArrayList<String> allEl = new ArrayList<>();
+        ElementsCollection allElOrderNumber = $$x("//div[@class = 'items-list clearfix']/div//span[@class = 'item__order-number']");
+        int pageNumber = 1;
+        while (pageExist(pageNumber)){
+            goNextPage(pageNumber);
+            for(SelenideElement el: allElOrderNumber){
+                allEl.add(el.getText());
+            }
+            pageNumber++;
+        }
         return allEl;
     }
 
@@ -31,12 +47,24 @@ public class MainPage {
         return list;
     }
 
-    public String getMainItemsName(){
-        return MainitemsName.getText();
+    public void goToSalePage(){
+        $x("//ul[@id = 'menu']//a[contains(., 'РАСПРОДАЖА')]").shouldBe(Condition.visible).click();
+    }
+
+    public String getItemsName(){
+        return itemsName.getText();
     }
 
     public void resetFilter(){
         reserFilterbtn.shouldBe(Condition.visible).click();
+    }
+
+    public ElementsCollection getAllFilters(){
+        return allFilters;
+    }
+
+    public void showFilter(){
+        showFilter.shouldBe(Condition.visible).click();
     }
 
     public void applyFilterGirlsShoes(){
@@ -67,11 +95,11 @@ public class MainPage {
         String name;
         SelenideElement price;
 
-        ElementsCollection allEl = getAllEl();
+        ElementsCollection allEl = getAllElOnPage();
         for(SelenideElement el:allEl){
             name = el.$x(".//p[@class = 'item__name']").getText();
             price = el.$x(".//span[@class = 'item__price']");
-            assertThat("В данної позиції немає ціни: " + name, !price.exists());
+            assertThat("В данної позиції немає ціни: " + name, price.exists());
         }
     }
 
