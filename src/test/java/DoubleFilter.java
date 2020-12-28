@@ -1,8 +1,7 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import java.util.ArrayList;
-import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
@@ -10,7 +9,6 @@ public class DoubleFilter extends Settings {
 
     @Test
     public void checkAmountOfElement(){
-        open("https://www.perlinka.ua/index.php/component/virtuemart/view/category/category_id/8/s/rasprodazha");
 
         ArrayList<String> jointFilterSum = new ArrayList<>();//сума товарів окремих фільтрів
         ArrayList<String> separateFilterSum = new ArrayList<>();//сума товарів двох фільтрів разом

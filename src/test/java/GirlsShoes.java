@@ -1,15 +1,10 @@
-import com.codeborne.selenide.*;
-import org.junit.Test;
-import static com.codeborne.selenide.Selenide.*;
+import org.testng.annotations.Test;
 
 public class GirlsShoes extends Settings{
 
     @Test
     public void checkPrice(){
         int pageNumber = 1;
-
-        Configuration.startMaximized = true;
-        open("https://www.perlinka.ua/index.php/component/virtuemart/view/category/category_id/8/s/rasprodazha");
 
         MainPage girlsShoes = new MainPage();
         girlsShoes.resetFilter();

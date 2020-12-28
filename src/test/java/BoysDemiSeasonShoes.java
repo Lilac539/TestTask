@@ -1,19 +1,14 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import java.util.ArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static com.codeborne.selenide.Selenide.open;
 
 public class BoysDemiSeasonShoes extends Settings {
 
     @Test
-    public void ckeckProductName(){
+    public void checkProductName(){
 
         int pageNumber = 1;
         ArrayList<String> listNameNotSneakers = new ArrayList<String>();
-
-        Configuration.startMaximized = true;
-        open("https://www.perlinka.ua/index.php/component/virtuemart/view/category/category_id/8/s/rasprodazha");
 
         BoysDemiSeasonShoesPage boyShoes = new BoysDemiSeasonShoesPage();
         boyShoes.resetFilter();
