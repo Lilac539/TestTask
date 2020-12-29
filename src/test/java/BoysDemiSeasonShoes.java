@@ -11,6 +11,7 @@ public class BoysDemiSeasonShoes extends Settings {
         ArrayList<String> listNameNotSneakers = new ArrayList<String>();
 
         BoysDemiSeasonShoesPage boyShoes = new BoysDemiSeasonShoesPage();
+        boyShoes.goToSalePage();
         boyShoes.resetFilter();
         boyShoes.applyFilterBoysDemiSShoes();
         while (boyShoes.pageExist(pageNumber)){

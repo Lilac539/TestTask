@@ -7,6 +7,7 @@ public class GirlsShoes extends Settings{
         int pageNumber = 1;
 
         MainPage girlsShoes = new MainPage();
+        girlsShoes.goToSalePage();
         girlsShoes.resetFilter();
         girlsShoes.applyFilterGirlsShoes();
         while (girlsShoes.pageExist(pageNumber)){

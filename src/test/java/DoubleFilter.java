@@ -16,6 +16,7 @@ public class DoubleFilter extends Settings {
         ArrayList<Integer> rndmElList = new ArrayList();
         MainPage mainPage = new MainPage();
 
+        mainPage.goToSalePage();
         ElementsCollection allFilters = mainPage.getAllFilters();
         rndmElList = mainPage.getRndmNumber(allFilters, 2);//отримуємо два рандомних фільтра
 
